@@ -1,3 +1,43 @@
+function getElementByTid(dataTid) {
+    return document.querySelector('[data-tid="' + dataTid + '"]');
+}
+
+
+/* Load teams components */
+var topBarElement = getElementByTid("app-header-bar"); /* The top bar background */
+var topBarSearchElement = getElementByTid("headerSearchInput"); /* The top bar search box */
+
+var navigationElement = getElementByTid("app-bar"); /* The left navigation bar */
+
+var chatsElement = getElementByTid("left-rail").parentElement; /* The left chat list */
+var getChatElements = function() { return document.getElementsByClassName("recipient-group-list-item"); } /* Gets chat cards from the left chat list */
+
+var messageAreaElement = getElementByTid("app-layout-area--main");
+
+
+/* Initializing potential themes */
+function InitializeTheme() {
+    topBarElement.style.backgroundColor = "#161b22";
+
+    navigationElement.style.backgroundColor = "#0d1117";
+    topBarSearchElement.style.backgroundColor = "transparent";
+    topBarSearchElement.style.border = "solid 1px #30363d";
+    topBarSearchElement.style.placeholder = "#c9d1d9";
+
+    chatsElement.style.backgroundColor = "#0d1117";
+
+    var chats = getChatElements()
+    for(i = 0; i < chats.length; i++)
+    {
+        chats[i].style.backgroundColor = "transparent";
+        chats[i].style.border = "solid 1px #30363d";
+        chats[i].style.borderRadius = "8px";
+        chats[i].childNodes[0].style.color = "#FFFFFF";
+    }
+}
+InitializeTheme();
+
+
 /* Initialize client */
 function InitializeUI() {
     var extensionsBarElement = document.querySelector('[data-tid="newMessageCommands-expand-compose"]').parentElement;
